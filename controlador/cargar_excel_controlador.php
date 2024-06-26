@@ -12,8 +12,8 @@ class CargarExcelcontrolador
     {
         $excelData = base64_decode($excelBase64);
 
-         // Verificar si la decodificación fue exitosa
-         
+        // Verificar si la decodificación fue exitosa
+
 
         // Crear un nombre de archivo temporal
         $tempFilePath = tempnam(sys_get_temp_dir(), 'excel_') . '.xlsx';
@@ -23,25 +23,25 @@ class CargarExcelcontrolador
         $spreadsheet = IOFactory::load($tempFilePath);
 
         $sheetCount = $spreadsheet->getSheetCount();
-        
+
 
         for ($index = 0; $index < $sheetCount; $index++) {
             // Acceder a la hoja por índice
             $sheet = $spreadsheet->getSheet($index);
-        
+
             // Obtener el nombre de la hoja
             $sheetName = $sheet->getTitle();
-            echo 'Procesando hoja: ' . $sheetName . PHP_EOL;
-        
+            //echo 'Procesando hoja: ' . $sheetName . PHP_EOL;
+
             // Obtener el valor de la celda C2 en esta hoja
             $cellValue = $sheet->getCell('C2')->getValue();
-            if($cellValue != ''){
-                echo 'El valor de nombre de celda A2 es: ' . $cellValue . PHP_EOL.'<br>';     
-            }else{
+            if ($cellValue != '') {
+                //echo 'El valor de nombre de celda A2 es: ' . $cellValue . PHP_EOL.'<br>';     
+            } else {
                 echo 'Eta vacio';
             }
-            
-            
+
+
         }
 
         // Puedes manipular el archivo de Excel aquí
@@ -54,7 +54,7 @@ class CargarExcelcontrolador
         // Eliminar el archivo temporal
         unlink($tempFilePath);
 
-        
+
 
 
 
