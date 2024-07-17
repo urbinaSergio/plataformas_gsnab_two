@@ -31,15 +31,19 @@ class CargarExcelcontrolador
 
             // Obtener el nombre de la hoja
             $sheetName = $sheet->getTitle();
-            //echo 'Procesando hoja: ' . $sheetName . PHP_EOL;
+            echo 'Procesando hoja: ' . $sheetName . PHP_EOL;
 
-            // Obtener el valor de la celda C2 en esta hoja
-            $cellValue = $sheet->getCell('C2')->getValue();
-            if ($cellValue != '') {
-                //echo 'El valor de nombre de celda A2 es: ' . $cellValue . PHP_EOL.'<br>';     
-            } else {
-                echo 'Eta vacio';
-            }
+            $highestRow = $sheet->getHighestRow();
+
+            for ($row = 2; $row <= $highestRow; $row++) {
+                $cellValue = $sheet->getCell('C' . $row)->getValue();
+                
+                if ($cellValue != '') {
+                    echo 'El valor de la celda C' . $row . ' es: ' . $cellValue . PHP_EOL . '<br>';     
+                } else {
+                    echo 'La celda C' . $row . ' está vacía' . PHP_EOL . '<br>';
+                }
+          }
 
 
         }
