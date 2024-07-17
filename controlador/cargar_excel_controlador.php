@@ -12,7 +12,7 @@ class CargarExcelcontrolador
     {
         $excelData = base64_decode($excelBase64);
 
-        // Verificar si la decodificación fue exitosate
+        // Verificar si la decodificación fue exitosatef
 
 
         // Crear un nombre de archivo temporal
