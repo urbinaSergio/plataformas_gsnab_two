@@ -1,5 +1,6 @@
 <?php
-include_once '../../controlador/cargar_excel_controlador.php';
+
+include_once '../../controlador/CargarExcelcontrolador.php';
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -16,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER['REQUEST_URI'] === '/usuar
 
     //nombre de la variable que se esat enviando en el Json en Postman
     $archivo_excel = $data['excel'];
-
 
     $cargarExcelcontrolador = new CargarExcelcontrolador();
 
