@@ -2,6 +2,12 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/usuarios_plataformas_gsnab/modelo');
+
+// Ahora puedes incluir el archivo sin problemas
+require_once('Estudiante.php');
+
+
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
@@ -14,7 +20,7 @@ class CargarExcelcontrolador
 
         // Verificar si la decodificación fue exitosatef
 
-
+            
         // Crear un nombre de archivo temporal
         $tempFilePath = tempnam(sys_get_temp_dir(), 'excel_') . '.xlsx';
 
@@ -38,6 +44,13 @@ class CargarExcelcontrolador
             for ($row = 2; $row <= $highestRow; $row++) {
                 $cellValue = $sheet->getCell('C' . $row)->getValue();
                 
+                $estudiante = new Estudiante(
+                    
+
+                );
+                
+                
+                
                 if ($cellValue != '') {
                     echo 'El valor de la celda C' . $row . ' es: ' . $cellValue . PHP_EOL . '<br>';     
                 } else {
@@ -48,14 +61,7 @@ class CargarExcelcontrolador
 
         }
 
-        // Puedes manipular el archivo de Excel aquí
-        //$sheet = $spreadsheet->getActiveSheet();
-        //$cellValue = $sheet->getCell('A2')->getValue();
-
-        // Imprimir el valor de la celda A1 como ejemplo
-        //echo 'El valor de la celda A1 es: ' . $cellValue;
-
-        // Eliminar el archivo temporal
+        
         unlink($tempFilePath);
 
 
