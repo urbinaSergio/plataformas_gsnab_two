@@ -44,4 +44,23 @@ class Estado
 
         $stmt->close();
     }
+
+    public static function findByName($conexion, $nombre_estado)
+    {
+        $sql = "SELECT * FROM estado WHERE nombre_estado = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("s", $nombre_estado);
+
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            if ($row = $result->fetch_assoc()) {
+                return new Estado($row['nombre_estado'], $row['id_estado']);
+            }
+        } else {
+            echo "Error al ejecutar la consulta: " . $stmt->error;
+        }
+
+        $stmt->close();
+        return null;
+    }
 }

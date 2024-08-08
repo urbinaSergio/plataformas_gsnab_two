@@ -43,14 +43,22 @@ class PlataformaDelfos
     // Método para insertar un nuevo registro en la base de datos
     public function save($conexion)
     {
-        $sql = "INSERT INTO plataforma_DELFOS (user_DELFOS, password_DELFOS) VALUES (?, ?)";
+
+        if ($this->user_DELFOS == null || $this->password_DELFOS == null) {
+            throw new Exception("User and password cannot be null");
+        }
+
+        $sql = "INSERT INTO plataforma_delfos (user_DELFOS, password_DELFOS) VALUES (?, ?)";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("ss", $this->user_DELFOS, $this->password_DELFOS);
 
         if ($stmt->execute()) {
-            echo "Registro insertado exitosamente";
+            $this->id_plataforma_DELFOS = $conexion->insert_id; // Obtener el ID autogenerado
+            echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_DELFOS;
+            return $this->id_plataforma_DELFOS;
         } else {
             echo "Error al insertar registro: " . $stmt->error;
+            return null;
         }
 
         $stmt->close();

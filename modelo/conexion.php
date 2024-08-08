@@ -24,7 +24,7 @@ class Conexion
             die("Error de conexión: " . $this->conexion->connect_error);
         }
 
-        echo "Conexión exitosa";
+        return $this->conexion;
     }
 
     public function ejecutar_query($sql)

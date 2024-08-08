@@ -44,4 +44,29 @@ class Curso
 
         $stmt->close();
     }
+
+
+     // Método para buscar un curso por ID
+     public static function findByName($conexion, $nombre_curso)
+     {
+         $sql = "SELECT * FROM cursos WHERE nombre_curso = ?";
+         
+         $stmt = $conexion->prepare($sql);
+         $stmt->bind_param("s", $nombre_curso);
+ 
+         if ($stmt->execute()) {
+             $result = $stmt->get_result();
+             if ($row = $result->fetch_assoc()) {
+                 return new Curso($row['nombre_curso'], $row['id_cursos']);
+             }
+         } else {
+             echo "Error al ejecutar la consulta: " . $stmt->error;
+         }
+ 
+         $stmt->close();
+         return null;
+     }
+
+
+    
 }

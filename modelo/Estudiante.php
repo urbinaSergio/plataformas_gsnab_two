@@ -91,31 +91,34 @@ class Estudiante
 
     // Método para insertar un nuevo registro en la base de datos
     public function save($conexion)
-    {
-        $sql = "INSERT INTO estudiantes (numero_identificacion, nombre_estudiante, cursos_id_cursos, estado_id_estado, 
-                fk_plataforma_cambridge, fk_plataforma_fathom_reads, fk_plataforma_milton_ochoa, 
-                fk_plataforma_arukay, plataforma_DELFOS_id_plataforma_DELFOS1) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param(
-            "ssiiiiiiii",
-            $this->numero_identificacion,
-            $this->nombre_estudiante,
-            $this->cursos_id_cursos,
-            $this->estado_id_estado,
-            $this->fk_plataforma_cambridge,
-            $this->fk_plataforma_fathom_reads,
-            $this->fk_plataforma_milton_ochoa,
-            $this->fk_plataforma_arukay,
-            $this->plataforma_DELFOS_id_plataforma_DELFOS1
-        );
+{
+    // La cadena de tipo debe coincidir con el número de variables
+    $sql = "INSERT INTO estudiante (numero_identificacion, nombre_estudiante, cursos_id_cursos, estado_id_estado, fk_plataforma_cambridge, fk_plataforma_fathom_reads, fk_plataforma_milton_ochoa, fk_plataforma_arukay, plataforma_DELFOS_id_plataforma_DELFOS1) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conexion->prepare($sql);
 
-        if ($stmt->execute()) {
-            echo "Registro insertado exitosamente";
-        } else {
-            echo "Error al insertar registro: " . $stmt->error;
-        }
+    // Asegúrate de que la cadena de tipo 'sssssssss' coincida con los tipos de las variables
+    $stmt->bind_param(
+        "ssiiiiiii", // 9 variables
+        $this->numero_identificacion,
+        $this->nombre_estudiante,
+        $this->cursos_id_cursos,
+        $this->estado_id_estado,
+        $this->fk_plataforma_cambridge,
+        $this->fk_plataforma_fathom_reads,
+        $this->fk_plataforma_milton_ochoa,
+        $this->fk_plataforma_arukay,
+        $this->plataforma_DELFOS_id_plataforma_DELFOS1
+    );
 
-        $stmt->close();
+    if ($stmt->execute()) {
+        $this->id_estudiante = $conexion->insert_id; // Obtener el ID autogenerado
+        echo "Registro insertado exitosamente con ID: " . $this->id_estudiante;
+        return $this->id_estudiante;
+    } else {
+        echo "Error al insertar registro: " . $stmt->error;
+        return null;
     }
+
+    $stmt->close();
+}
 }

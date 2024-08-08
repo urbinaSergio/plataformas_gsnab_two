@@ -44,14 +44,22 @@ class PlataformaCambridge
     // Método para insertar un nuevo registro en la base de datos
     public function save($conexion)
     {
-        $sql = "INSERT INTO plataforma_CAMBRIDGE (user_FATHOM_CAMBRIDGE, password_CAMBRIDGE) VALUES (?, ?)";
+
+        if ($this->user_FATHOM_CAMBRIDGE == null || $this->password_CAMBRIDGE == null) {
+            throw new Exception("User and password cannot be null");
+        }
+
+        $sql = "INSERT INTO plataforma_cambridge (user_FATHOM_CAMBRIDGE, password_CAMBRIDGE) VALUES (?, ?)";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("ss", $this->user_FATHOM_CAMBRIDGE, $this->password_CAMBRIDGE);
 
         if ($stmt->execute()) {
-            echo "Registro insertado exitosamente";
+            $this->id_plataforma_CAMBRIDGE = $conexion->insert_id; // Obtener el ID autogenerado
+            echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_CAMBRIDGE;
+            return $this->id_plataforma_CAMBRIDGE;
         } else {
             echo "Error al insertar registro: " . $stmt->error;
+            return null;
         }
 
         $stmt->close();

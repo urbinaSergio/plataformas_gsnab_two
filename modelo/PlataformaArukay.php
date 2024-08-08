@@ -1,4 +1,5 @@
-<?
+<?php
+
 class PlataformaARUKAY
 {
     private $id_plataforma_ARUKAY;
@@ -43,14 +44,22 @@ class PlataformaARUKAY
     // Método para insertar un nuevo registro en la base de datos
     public function save($conexion)
     {
-        $sql = "INSERT INTO plataforma_ARUKAY (user_ARUKAY, password_ARUKAY) VALUES (?, ?)";
+
+        if ($this->user_ARUKAY == null || $this->password_ARUKAY == null) {
+            throw new Exception("User and password cannot be null");
+        }
+
+        $sql = "INSERT INTO plataforma_arukay (user_ARUKAY, password_ARUKAY) VALUES (?, ?)";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("ss", $this->user_ARUKAY, $this->password_ARUKAY);
 
         if ($stmt->execute()) {
-            echo "Registro insertado exitosamente";
+            $this->id_plataforma_ARUKAY = $conexion->insert_id; // Obtener el ID autogenerado
+            echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_ARUKAY;
+            return $this->id_plataforma_ARUKAY;
         } else {
             echo "Error al insertar registro: " . $stmt->error;
+            return null;
         }
 
         $stmt->close();

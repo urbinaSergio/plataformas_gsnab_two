@@ -44,14 +44,22 @@ class PlataformaFathomReads
     // Método para insertar un nuevo registro en la base de datos
     public function save($conexion)
     {
-        $sql = "INSERT INTO plataforma_FATHOM_READS (user_FATHOM_READS, password_FATHOM_READS) VALUES (?, ?)";
+
+        if ($this->user_FATHOM_READS == null || $this->password_FATHOM_READS == null) {
+            throw new Exception("User and password cannot be null");
+        }
+        
+        $sql = "INSERT INTO plataforma_fathom_reads (user_FATHOM_READS, password_FATHOM_READS) VALUES (?, ?)";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("ss", $this->user_FATHOM_READS, $this->password_FATHOM_READS);
 
         if ($stmt->execute()) {
-            echo "Registro insertado exitosamente";
+            $this->id_plataforma_FATHOM_READS = $conexion->insert_id; // Obtener el ID autogenerado
+            echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_FATHOM_READS;
+            return $this->id_plataforma_FATHOM_READS;
         } else {
             echo "Error al insertar registro: " . $stmt->error;
+            return null;
         }
 
         $stmt->close();
