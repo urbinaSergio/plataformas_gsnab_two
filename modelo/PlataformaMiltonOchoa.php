@@ -55,10 +55,10 @@ class PlataformaMiltonOchoa
 
         if ($stmt->execute()) {
             $this->id_plataforma_MILTON_OCHOA = $conexion->insert_id; // Obtener el ID autogenerado
-            echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_MILTON_OCHOA;
+            //echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_MILTON_OCHOA;
             return $this->id_plataforma_MILTON_OCHOA;
         } else {
-            echo "Error al insertar registro: " . $stmt->error;
+            //echo "Error al insertar registro: " . $stmt->error;
             return null;
         }
 

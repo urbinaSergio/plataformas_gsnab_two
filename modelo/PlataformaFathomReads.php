@@ -55,10 +55,10 @@ class PlataformaFathomReads
 
         if ($stmt->execute()) {
             $this->id_plataforma_FATHOM_READS = $conexion->insert_id; // Obtener el ID autogenerado
-            echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_FATHOM_READS;
+            //echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_FATHOM_READS;
             return $this->id_plataforma_FATHOM_READS;
         } else {
-            echo "Error al insertar registro: " . $stmt->error;
+            //echo "Error al insertar registro: " . $stmt->error;
             return null;
         }
 

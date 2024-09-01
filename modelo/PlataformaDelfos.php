@@ -54,10 +54,10 @@ class PlataformaDelfos
 
         if ($stmt->execute()) {
             $this->id_plataforma_DELFOS = $conexion->insert_id; // Obtener el ID autogenerado
-            echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_DELFOS;
+            //echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_DELFOS;
             return $this->id_plataforma_DELFOS;
         } else {
-            echo "Error al insertar registro: " . $stmt->error;
+            //echo "Error al insertar registro: " . $stmt->error;
             return null;
         }
 
