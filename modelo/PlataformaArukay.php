@@ -55,10 +55,10 @@ class PlataformaARUKAY
 
         if ($stmt->execute()) {
             $this->id_plataforma_ARUKAY = $conexion->insert_id; // Obtener el ID autogenerado
-            echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_ARUKAY;
+            //echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_ARUKAY;
             return $this->id_plataforma_ARUKAY;
         } else {
-            echo "Error al insertar registro: " . $stmt->error;
+            //echo "Error al insertar registro: " . $stmt->error;
             return null;
         }
 

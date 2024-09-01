@@ -112,10 +112,10 @@ class Estudiante
 
     if ($stmt->execute()) {
         $this->id_estudiante = $conexion->insert_id; // Obtener el ID autogenerado
-        echo "Registro insertado exitosamente con ID: " . $this->id_estudiante;
+        //echo "Registro insertado exitosamente con ID: " . $this->id_estudiante;
         return $this->id_estudiante;
     } else {
-        echo "Error al insertar registro: " . $stmt->error;
+        //echo "Error al insertar registro: " . $stmt->error;
         return null;
     }
 

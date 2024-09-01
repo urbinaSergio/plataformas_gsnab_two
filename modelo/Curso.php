@@ -37,9 +37,9 @@ class Curso
         $stmt->bind_param("s", $this->nombre_curso);
 
         if ($stmt->execute()) {
-            echo "Registro insertado exitosamente";
+            //echo "Registro insertado exitosamente";
         } else {
-            echo "Error al insertar registro: " . $stmt->error;
+            //echo "Error al insertar registro: " . $stmt->error;
         }
 
         $stmt->close();
@@ -60,7 +60,7 @@ class Curso
                  return new Curso($row['nombre_curso'], $row['id_cursos']);
              }
          } else {
-             echo "Error al ejecutar la consulta: " . $stmt->error;
+             //echo "Error al ejecutar la consulta: " . $stmt->error;
          }
  
          $stmt->close();

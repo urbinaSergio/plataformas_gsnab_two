@@ -53,16 +53,12 @@ class CargarExcelcontrolador
             $sheet = $spreadsheet->getSheet($index);
         
             // Obtener el nombre de la hoja
-            $sheetName = $sheet->getTitle();
-            echo 'Procesando hoja: ' . $sheetName . PHP_EOL;
-        
             $highestRow = $sheet->getHighestRow();
         
             for ($row = 2; $row <= $highestRow; $row++) {
                 $numero_identificacion = $sheet->getCell('A' . $row)->getValue();
                 $nombre_estudiante = $sheet->getCell('C' . $row)->getValue();
                 $buscarCursoNombre = $sheet->getCell('D' . $row)->getValue();
-                echo "Sergio.................. ".$buscarCursoNombre;
                 $curso = Curso::findByName($conn, $buscarCursoNombre);
                 $buscarEsatdoNombre = $sheet->getCell('B' . $row)->getValue();
                 $estado = Estado::findByName($conn, $buscarEsatdoNombre);
@@ -77,7 +73,7 @@ class CargarExcelcontrolador
                     $plataforma_fathom_reads = new PlataformaFathomReads($user_fathom_reads, $password_fathom_reads);
                     $id_insertado_fathom = $plataforma_fathom_reads->save($conn);
                 } else {
-                    echo "User or password for Fathom Reads cannot be null" . PHP_EOL;
+                    //echo "User or password for Fathom Reads cannot be null" . PHP_EOL;
                     continue; // Skip to the next row
                 }
 
@@ -90,7 +86,7 @@ class CargarExcelcontrolador
                     $plataforma_cambridge = new PlataformaCambridge($user_cambridge, $password_cambridge);
                     $id_insertado_cambridge = $plataforma_cambridge->save($conn);
                 } else {
-                    echo "User or password for Cambridge cannot be null" . PHP_EOL;
+                    //echo "User or password for Cambridge cannot be null" . PHP_EOL;
                     continue;
                 }
 
@@ -104,7 +100,6 @@ class CargarExcelcontrolador
                     $plataforma_milton_ochoa = new PlataformaMiltonOchoa($user_milton, $password_milton);
                     $id_insertado_milton = $plataforma_milton_ochoa->save($conn);
                 } else {
-                    echo "User or password for Milton Ochoa cannot be null" . PHP_EOL;
                     continue;
                 }
 
@@ -117,7 +112,6 @@ class CargarExcelcontrolador
                     $plataforma_arukay = new PlataformaArukay($user_arukay, $password_arukay);
                     $id_insertado_arukay = $plataforma_arukay->save($conn);
                 } else {
-                    echo "User or password for Arukay cannot be null" . PHP_EOL;
                     continue;
                 }
         
@@ -128,7 +122,6 @@ class CargarExcelcontrolador
                     $plataforma_delfos = new PlataformaDelfos($user_delfos, $password_delfos);
                     $id_insertado_delfos = $plataforma_delfos->save($conn);
                 } else {
-                    echo "User or password for Delfos cannot be null" . PHP_EOL;
                     continue;
                 }
         
@@ -146,11 +139,12 @@ class CargarExcelcontrolador
         
                 $estudiante->save($conn);
         
-                if ($nombre_estudiante != '') {
+                /*if ($nombre_estudiante != '') {
                     echo 'El valor de la celda C' . $row . ' es: ' . $nombre_estudiante . PHP_EOL . '<br>';     
                 } else {
                     echo 'La celda C' . $row . ' está vacía' . PHP_EOL . '<br>';
-                }
+                }*/
+                
             }
         }
 

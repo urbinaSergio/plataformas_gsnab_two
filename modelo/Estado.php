@@ -37,9 +37,9 @@ class Estado
         $stmt->bind_param("s", $this->nombre_estado);
 
         if ($stmt->execute()) {
-            echo "Registro insertado exitosamente";
+            //echo "Registro insertado exitosamente";
         } else {
-            echo "Error al insertar registro: " . $stmt->error;
+            //echo "Error al insertar registro: " . $stmt->error;
         }
 
         $stmt->close();
@@ -57,7 +57,7 @@ class Estado
                 return new Estado($row['nombre_estado'], $row['id_estado']);
             }
         } else {
-            echo "Error al ejecutar la consulta: " . $stmt->error;
+            //echo "Error al ejecutar la consulta: " . $stmt->error;
         }
 
         $stmt->close();

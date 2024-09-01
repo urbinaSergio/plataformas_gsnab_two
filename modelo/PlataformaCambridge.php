@@ -55,10 +55,10 @@ class PlataformaCambridge
 
         if ($stmt->execute()) {
             $this->id_plataforma_CAMBRIDGE = $conexion->insert_id; // Obtener el ID autogenerado
-            echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_CAMBRIDGE;
+            //echo "Registro insertado exitosamente con ID: " . $this->id_plataforma_CAMBRIDGE;
             return $this->id_plataforma_CAMBRIDGE;
         } else {
-            echo "Error al insertar registro: " . $stmt->error;
+            //echo "Error al insertar registro: " . $stmt->error;
             return null;
         }
 
