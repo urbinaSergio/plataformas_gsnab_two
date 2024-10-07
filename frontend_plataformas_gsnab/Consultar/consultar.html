@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Estudiante</title>
+    <link rel="stylesheet" href="../css/estilos-consultar.css">
+</head>
+
+<body>
+    <h1>Consultar Estudiante</h1>
+    <input type="text" id="numeroDocumento" placeholder="Ingrese el número de documento" required>
+    <button id="consultarButton">Consultar</button>
+    
+    <table id="resultTable" style="display: none;">
+        <thead>
+            <tr>
+                <th>Campo</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody id="resultBody"></tbody>
+    </table>
+
+    <p id="errorMessage" style="color: red;"></p>
+
+    <script src="../js/consultarEstudiante.js"></script>
+</body>
+
+</html>
