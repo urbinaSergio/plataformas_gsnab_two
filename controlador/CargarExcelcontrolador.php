@@ -30,6 +30,41 @@ class CargarExcelcontrolador
 
     public function resivirExcel($excelBase64)
     {
+
+        $conexion = new Conexion();
+        $conn = $conexion->conectar_db();
+
+
+        $sqlTruncate = "
+                -- Desactivar las verificaciones de claves foráneas
+                SET FOREIGN_KEY_CHECKS = 0;
+
+                -- Truncar las tablas
+                TRUNCATE TABLE estudiante;
+                TRUNCATE TABLE plataforma_arukay;
+                TRUNCATE TABLE plataforma_cambridge;
+                TRUNCATE TABLE plataforma_delfos;
+                TRUNCATE TABLE plataforma_fathom_reads;
+                TRUNCATE TABLE plataforma_milton_ochoa;
+
+                -- Volver a activar las verificaciones de claves foráneas
+                SET FOREIGN_KEY_CHECKS = 1;
+            ";
+
+            // Ejecutar múltiples sentencias
+            if ($conn->multi_query($sqlTruncate)) {
+                do {
+                    // Avanzar a la siguiente consulta (si hay más)
+                    if ($conn->next_result()) {
+                        continue;
+                    }
+                } while ($conn->more_results());
+
+                //echo "Consultas ejecutadas correctamente.";
+            } else {
+                //echo "Error en la ejecución de las consultas: " . $conn->error;
+            }
+
         $excelData = base64_decode($excelBase64);
 
         // Verificar si la decodificación fue exitosatef
@@ -44,8 +79,7 @@ class CargarExcelcontrolador
 
         $sheetCount = $spreadsheet->getSheetCount();
 
-        $conexion = new Conexion();
-        $conn = $conexion->conectar_db();
+        
 
 
         for ($index = 0; $index < $sheetCount; $index++) {
