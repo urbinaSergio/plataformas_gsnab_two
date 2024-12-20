@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Estudiante</title>
+    <link rel="stylesheet" href="../css/estilos-consultar.css">
+</head>
+
+
+<body>
+    <img class="logo-gsnab" src="../img/logo_gsnab.png" alt="arukay_img" />
+
+    <h1>Consultar Estudiante</h1>
+    <input type="text" id="numeroDocumento" placeholder="Ingrese el número de documento" required>
+    <br />
+    <input type="checkbox" name="aceptar_terminos" id="aceptar_terminos" value="aceptar_terminos" /> He leído y acepto
+    la <a href="https://drive.google.com/file/d/1f4qyqyl04YIpPwS8hA0yhv9_wwneNSCK/view" target="_blank">Política de
+        Privacidad</a>
+    <br />
+    <button id="consultarButton">Consultar</button>
+
+    <div class="tabla">
+        <table id="resultTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Campo</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody id="resultBody"></tbody>
+        </table>
+    </div>
+    <div class="contenedor_imagenes">
+        <a title="arukay_img" href="https://app.arukay.com/" target="_blank">
+            <img class="imagen" src="../img/3.png" alt="arukay_img" />
+        </a>
+        <a title="cambridge_img" href="https://www.cambridgeone.org/login" target="_blank">
+            <img class="imagen" src="../img/1.png" alt="cambridge_img" />
+        </a>
+        <a title="delfos_img" href="https://edu.eurekadigital.com.co/login/index.php" target="_blank">
+            <img class="imagen" src="../img/13.png" alt="delfos_img" />
+        </a>
+        <a title="fahom_img" href="https://class-edtech.fathomreads.com/app/signin.php" target="_blank">
+            <img class="imagen" src="../img/11.png" alt="fahom_img" />
+        </a>
+        <a title="milton_img" href="https://miltonochoa.com.co/web/" target="_blank">
+            <img class="imagen" src="../img/12.png" alt="fahom_img" />
+        </a>
+
+
+
+
+        <p id="errorMessage"></p>
+
+        <script src="../js/consultarEstudiante.js"></script>
+
+
+</body>
+</div>
+
+</html>

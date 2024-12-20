@@ -1,14 +1,80 @@
+/* Estilos globales */
+* {
+    box-sizing: border-box;
+    /* Asegura que el padding y el borde se incluyan en el tamaño de los elementos */
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(135deg, #33497E, #4a90e2);
+    /*background-color: #ffff;*/
     margin: 20px;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    display: flex;
+    /* Activar flexbox */
+    justify-content: center;
+    /* Centrar horizontalmente */
+    align-items: center;
+    /* Centrar verticalmente */
+    flex-direction: column;
+    /* Opcional: centra los elementos en una columna */
 }
 
+/* Estilo para el mensaje de error */
+#errorMessage {
+    color: red;
+    margin-top: 10px;
+}
+
+.contenedor_imagenes {
+    margin: 20px;
+    padding: 20px;
+    width: 790px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    justify-content: space-around;
+    /* Considera cambiar a space-around si necesitas más separación */
+}
+
+img {
+    width: 100%;
+    /* Ajustar la imagen al 100% del contenedor */
+    height: auto;
+    /* Mantener la proporción original de la imagen */
+    border-radius: 20%;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+a {
+    padding: 1px;
+    margin: 5px;
+}
+
+.imagen {
+    transition: transform 0.3s ease;
+}
+
+.imagen:hover {
+    transform: scale(1.1);
+}
+
+
+.logo-gsnab {
+    height: 250px;
+    width: auto;
+    border-radius: 10%;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 50px;
+}
+
+
+
 h1 {
-    color: #333;
+    color: #ffffff;
 }
 
 input[type="text"] {
@@ -19,18 +85,27 @@ input[type="text"] {
     border-radius: 4px;
 }
 
+
+
+
 button {
-    padding: 10px 15px;
-    background-color: #28a745;
+    background-color: #33497E;
     color: white;
     border: none;
-    border-radius: 4px;
+    padding: 12px 24px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    margin-top: 10px;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #993300;
+    transform: scale(1.05);
+    /* Efecto de ampliación al pasar el ratón */
 }
+
 
 table {
     margin-top: 20px;
@@ -39,17 +114,24 @@ table {
     background-color: #fff;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
-    color: #333;
+    background-color: #33497E;
+    color: #ffff;
+    text-align: center;
 }
 
-#errorMessage {
-    margin-top: 10px;
+#consultarButton {
+    margin-top: 30px;
+
+}
+
+#privacyError {
+    display: none;
 }
