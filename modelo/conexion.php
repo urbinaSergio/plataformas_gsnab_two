@@ -16,7 +16,10 @@ class Conexion
         $contrasena = '';
         $base_de_datos = 'gsnab_db';
 
-        // Crear conexión
+        // Crear conexión local
+        //$this->conexion = new mysqli($host, $usuario, $contrasena, $base_de_datos);
+         // Crear conexión local
+
         $this->conexion = new mysqli($host, $usuario, $contrasena, $base_de_datos);
 
         // Verificar la conexión
